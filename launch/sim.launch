@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find fast_slam)/launch/full.launch" />
+    <rosparam param="slam/cone_topics">[/ref/cones/cones_map/cones_map]</rosparam>
+</launch>

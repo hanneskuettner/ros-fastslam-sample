@@ -1,0 +1,51 @@
+<launch>
+    <node name="local_slam" pkg="fast_slam" type="fast_slam" output="screen">
+        <param name="particle_count" value="200" type="int" />
+        <param name="thread_count" value="2" type="int" />
+
+        <param name="topic_odometry" value="/odometry/filtered" type="string" />
+        <param name="topic_out" value="/local_slam/cones" type="string" />
+        <param name="front_only_topic_out" value="/local_slam/front_cones" type="string" />
+        <param name="map_frame_id" value="map" type="string" />
+        <rosparam param="cone_topics">[/camValidL/cones, /camValidR/cones]</rosparam>
+
+        <!-- observation_increment is added to counter if landmark is observed.
+             Decremented by one for each missed measurement.
+             If it reaches 0 the landmark is removed. -->
+        <param name="observation_increment" value="20" type="int" />
+
+        <!-- If true slam deletes the cones that leave the fov and are 10m behind the car.
+             Can be used for local mapping -->
+        <param name="delete_cones_when_left_fov" value="true" type="boolean" />
+
+        <param name="associate_same_color_only" value="false" type="boolean" />
+
+        <param name="particle_resample_factor" value="0.6" type="double" />
+        <param name="loop_closure_particle_factor" value="0.5" type="double" />
+
+        <param name="motion_std_dev_x" value="0.1" type="double" />
+        <param name="motion_std_dev_y" value="0.1" type="double" />
+        <param name="motion_std_dev_theta" value="0.1" type="double" />
+
+        <param name="cone_radius" value="0.05" type="double" />
+
+        <param name="near_observation_distance" value="0.5" type="double" />
+        <param name="far_observation_distance" value="15" type="double" />
+        <param name="max_observation_angle" value="60" type="double" />
+
+        <param name="load_map_from_file" value="false" type="boolean" />
+        <param name="load_skid_pad" value="false" type="boolean" />
+
+        <param name="map_location" value="/bags/maps" />
+        <param name="load_map_filename" value="map.map" />
+
+        <remap from="/slam/fov" to="/local_slam/fov" />
+        <remap from="/slam/front_cones" to="/local_slam/front_cones" />
+        <remap from="/slam/midway" to="/local_slam/midway" />
+        <remap from="/slam/particles" to="/local_slam/particles" />
+        <remap from="/slam/relative_cones" to="/local_slam/relative_cones" />
+        <remap from="/slam/relative_measurements" to="/local_slam/relative_measurements" />
+        <remap from="/slam/status" to="/local_slam/status" />
+        <remap from="/odometry/slam" to="/odometry/local_slam" />
+    </node>
+</launch>

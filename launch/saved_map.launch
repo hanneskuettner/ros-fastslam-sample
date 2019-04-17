@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find fast_slam)/launch/full.launch" />
+    <param name="slam/load_map_from_file" value="true" type="boolean" />
+</launch>

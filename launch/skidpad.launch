@@ -1,0 +1,8 @@
+<launch>
+    <include file="$(find fast_slam)/launch/full.launch" />
+    <param name="slam/load_skid_pad" value="true" type="boolean" />
+
+    <param name="slam/motion_std_dev_x" value="0.4" type="double" />
+    <param name="slam/motion_std_dev_y" value="0.4" type="double" />
+    <param name="slam/motion_std_dev_theta" value="0.4" type="double" />
+</launch>

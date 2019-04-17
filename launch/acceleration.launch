@@ -1,0 +1,7 @@
+<launch>
+    <include file="$(find fast_slam)/launch/full.launch" />
+    <param name="slam/particle_count" value="100" />
+    <param name="slam/motion_std_dev_x" value="0.2" type="double" />
+    <param name="slam/motion_std_dev_y" value="0.05" type="double" />
+    <param name="slam/motion_std_dev_theta" value="0.05" type="double" />
+</launch>
